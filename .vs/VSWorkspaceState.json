@@ -7,6 +7,6 @@
     "\\src\\components",
     "\\src\\views"
   ],
-  "SelectedNode": "\\src\\views\\About.vue",
+  "SelectedNode": "\\src\\components\\Transaction.vue",
   "PreviewInSolutionExplorer": false
 }

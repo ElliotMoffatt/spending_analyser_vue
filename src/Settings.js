@@ -47,5 +47,8 @@ export var categoryKeywords = {
         "deliveroo",
         "just eat",
         "five guys"
+    ],
+    investments: [
+        "hl.co.uk"
     ]
 };

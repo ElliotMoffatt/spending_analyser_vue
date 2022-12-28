@@ -1,4 +1,4 @@
-import { Transaction } from '@/Transaction.js';
+//import { Transaction } from '@/Transaction.js';
 
 export class Category {
     constructor(categoryName) {
@@ -21,7 +21,7 @@ export class Category {
                 matchingTransaction.increaseAmount(transaction.amount)
             }
             else {
-                this.mergedTransactions.push(new Transaction(transaction.description, transaction.amount));
+                this.mergedTransactions.push(transaction);
             }
         }, this)
     }

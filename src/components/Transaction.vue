@@ -30,7 +30,7 @@
                 if (!this.transaction.date) {
                     return null;
                 }
-                return `${this.transaction.getDay()}/${this.transaction.getMonth() + 1}/${this.transaction.getFullYear()}`;
+                return `${this.transaction.date.getDay()}/${this.transaction.date.getMonth() + 1}/${this.transaction.date.getFullYear()}`;
             }
         }
     }

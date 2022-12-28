@@ -1,33 +1,22 @@
 import { incomeCategoryName, otherCategoryName } from '@/Settings.js';
 
 export class Transaction {
-    constructor(rawString, amount) {
-        if (amount === undefined) {
-            var lines = rawString.split("\n").filter(el => el != null);
-            for (var i = 0; i < lines.length; i++) {
-                lines[i] = lines[i].split(":")[1].trim();
-            }
-            this.setDate(lines[0]);
-            this.description = lines[1];
-            this.amount = parseFloat(lines[2]);
-            this.balance = parseFloat(lines[3]);
-        }
-        else {
-            this.description = rawString;
-            this.amount = amount;
-        }
+    /**
+     * @param{Date} date
+     * @param{string} description
+     * @param{number} amount
+     * @param{number} balance
+     * */
+    constructor(date, description, amount, balance) {
+        this.date = date;
+        this.description = description;
+        this.amount = amount;
+        this.balance = balance;
         
     }
 
     increaseAmount(extra) {
         this.amount += extra;
-    }
-
-    setDate(dateString) {
-        var dateParts = dateString.split("/");
-
-        // month is 0-based, that's why we need dataParts[1] - 1
-        this.date = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
     }
 
     tidyDescription(descriptionFillerWords) {

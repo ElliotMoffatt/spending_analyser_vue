@@ -2,6 +2,14 @@
     <div class="fileUpload">
         <div class="row">
             <div class="col-auto">
+                Select data source:
+            </div>
+            <div class="col-auto" style="border-right: 1px solid">
+                <select class="form-select" v-model="selectedDataSource">
+                    <option selected :value="DataSource.Santander">Santander</option>
+                </select>
+            </div>
+            <div class="col-auto">
                 Select .txt to analyse:
             </div>
             <div class="col-auto">
@@ -28,8 +36,16 @@
 </style>
 
 <script>
-    import { Transaction } from '@/Transaction.js';
     import { Month } from '@/Month.js';
+    import { parseSantander } from '@/TransactionFactories/Santander.js';
+
+
+    /**
+     * Enum for the types of bank statement that can be parsed
+     * */
+    const DataSource = {
+        Santander: 0
+    };
 
 
     export default {
@@ -46,6 +62,9 @@
         },
         data: function () {
             return {
+                DataSource,
+                selectedDataSource: DataSource.Santander,
+                rawText: "",
                 transactions: [],
                 months: []
             }
@@ -76,6 +95,19 @@
                 }
             },
 
+            rawText: {
+                handler: function (n) {
+                    this.transactions = this.parseData(n);
+                }
+            },
+
+            selectedDataSource: {
+                handler: function () {
+                    this.transactions = this.parseData(this.rawText);
+                }
+            },
+
+
             months: function () {
                 this.$emit("update:months", this.months);
             }
@@ -87,20 +119,25 @@
                 var fileReader = new FileReader();
 
                 fileReader.onload = function (fileLoadedEvent) {
-                    var rawText = fileLoadedEvent.target.result;
-                    var transactionsTextArray = rawText.toLowerCase().replace(/\uFFFD/g, ' ').replace(/\t/g, '').replace(/\xa0/g, ' ').split("\n\n");
-                    transactionsTextArray.shift();
-                    transactionsTextArray.shift();
-
-                    var transactions = [];
-                    for (var i = 0; i < transactionsTextArray.length; i++) {
-                        transactions.push(new Transaction(transactionsTextArray[i]));
-                    }
-                    vm.transactions = transactions;
+                    vm.rawText = fileLoadedEvent.target.result;
 
                 };
 
                 fileReader.readAsText(fileToLoad, "ANSI");
+            },
+
+            /**
+             * Given the raw text from the file upload, parses the data into a Transaction array using the selected parser
+             * @param{string} rawText
+             * @returns{Transaction[]}
+             * */
+            parseData(rawText) {
+                switch (this.selectedDataSource) {
+                    case DataSource.Santander:
+                        return parseSantander(rawText);
+                    default:
+                        return [];
+                }
             },
 
             tidyAndCategoriseTransactions() {
