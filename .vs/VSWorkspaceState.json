@@ -2,11 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\public",
-    "\\src",
     "\\src\\assets",
     "\\src\\components",
-    "\\src\\views"
+    "\\src\\TransactionFactories"
   ],
-  "SelectedNode": "\\src\\components\\Transaction.vue",
+  "SelectedNode": "\\public",
   "PreviewInSolutionExplorer": false
 }

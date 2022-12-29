@@ -2,7 +2,6 @@
     <div class="transaction">
         <div>{{transaction.description}} : &#163;{{transaction.amount.toFixed(2)}}</div>
         <div v-if="transaction.date">Date: {{formattedDate}}</div>
-        <div v-if="transaction.balance">Balance: &#163;{{transaction.balance}}</div>
     </div>
 </template>
 

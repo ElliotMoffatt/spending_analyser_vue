@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col">
                 <h4>Months</h4>
-                <Month v-for="month in months" class="monthList" :month="month" :isSelected="isSelectedMonth(month)" :key="month.title" v-on:setMonth="setSelectedMonth"></Month>
+                <Month v-for="(month, idx) in months" class="monthList" :month="month" :isSelected="isSelectedMonth(month)" :key="idx" v-on:setMonth="setSelectedMonth"></Month>
             </div>
             <div class="col">
                 <h4 v-if="selectedMonth">{{selectedMonth.title}}</h4>

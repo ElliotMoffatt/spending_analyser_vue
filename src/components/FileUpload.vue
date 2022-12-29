@@ -7,13 +7,15 @@
             <div class="col-auto" style="border-right: 1px solid">
                 <select class="form-select" v-model="selectedDataSource">
                     <option selected :value="DataSource.Santander">Santander</option>
+                    <option :value="DataSource.Natwest">Natwest</option>
+                    <option :value="DataSource.Halifax">Halifax</option>
                 </select>
             </div>
             <div class="col-auto">
-                Select .txt to analyse:
+                Select .txt or .csv to analyse:
             </div>
             <div class="col-auto">
-                <input type="file" role="button" class="form-control-file" id="fileToLoad" accept=".txt" @change="loadFileAsText()">
+                <input type="file" role="button" class="form-control-file" id="fileToLoad" accept=".txt,.csv" @change="loadFileAsText()">
             </div>
         </div>
     </div>
@@ -38,13 +40,16 @@
 <script>
     import { Month } from '@/Month.js';
     import { parseSantander } from '@/TransactionFactories/Santander.js';
+    import { parseNatwest } from '@/TransactionFactories/Natwest.js';
 
 
     /**
      * Enum for the types of bank statement that can be parsed
      * */
     const DataSource = {
-        Santander: 0
+        Santander: 0,
+        Natwest: 1,
+        Halifax: 2
     };
 
 
@@ -135,6 +140,8 @@
                 switch (this.selectedDataSource) {
                     case DataSource.Santander:
                         return parseSantander(rawText);
+                    case DataSource.Natwest:
+                        return parseNatwest(rawText);
                     default:
                         return [];
                 }

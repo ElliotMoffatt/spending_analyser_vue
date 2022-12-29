@@ -62,11 +62,15 @@
         data() {
             return {
                 summaries: [],
-                includeIncompleteMonths: false,
             }
         },
 
         computed: {
+
+            includeIncompleteMonths() {
+                return this.months.filter(x => x.isComplete).length == 0;
+            },
+
             monthsToInclude() {
                 return this.includeIncompleteMonths ? this.months : this.months.filter(month => month.isComplete)
             },

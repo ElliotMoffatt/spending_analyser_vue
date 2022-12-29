@@ -12,9 +12,14 @@ export class Month {
     }
 
     setTitle() {
-        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        const date = this.transactions[0].date;
-        this.title = monthNames[date.getMonth()] + " " + String(date.getFullYear());
+        if (this.transactions.length > 0) {
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"]
+            const date = this.transactions[0].date;
+            this.title = monthNames[date.getMonth()] + " " + String(date.getFullYear());
+        }
+        else {
+            this.title = "Undated"
+        }
     }
 
     setNetIncome() {
