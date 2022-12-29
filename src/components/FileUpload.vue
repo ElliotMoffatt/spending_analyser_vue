@@ -41,6 +41,7 @@
     import { Month } from '@/Month.js';
     import { parseSantander } from '@/TransactionFactories/Santander.js';
     import { parseNatwest } from '@/TransactionFactories/Natwest.js';
+    import { parseHalifax } from '@/TransactionFactories/Halifax.js';
 
 
     /**
@@ -142,6 +143,8 @@
                         return parseSantander(rawText);
                     case DataSource.Natwest:
                         return parseNatwest(rawText);
+                    case DataSource.Halifax:
+                        return parseHalifax(rawText);
                     default:
                         return [];
                 }
