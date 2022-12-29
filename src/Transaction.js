@@ -5,13 +5,11 @@ export class Transaction {
      * @param{Date} date
      * @param{string} description
      * @param{number} amount
-     * @param{number} balance
      * */
-    constructor(date, description, amount, balance) {
+    constructor(date, description, amount) {
         this.date = date;
         this.description = description;
         this.amount = amount;
-        this.balance = balance;
         
     }
 

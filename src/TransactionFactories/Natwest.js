@@ -42,9 +42,8 @@ function readTextAsTransaction(rawString) {
         const date = parseDateText(lines[0]) || new Date();
         const description = lines[2] || "";
         const amount = parseFloat(lines[3]) || 0;
-        const balance = parseFloat(lines[4]) || 0;
 
-        return new Transaction(date, description, amount, balance)
+        return new Transaction(date, description, amount)
     }
 
 }

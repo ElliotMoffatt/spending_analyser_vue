@@ -40,11 +40,9 @@ function readTextAsTransaction(rawString) {
 
         const debit = parseFloat(lines[5]) || 0
         const credit = parseFloat(lines[6]) || 0
-        const amount = credit - debit
+        const amount = credit - debit;
 
-        const balance = parseFloat(lines[7]) || 0;
-
-        return new Transaction(date, description, amount, balance)
+        return new Transaction(date, description, amount)
     }
 
 }
