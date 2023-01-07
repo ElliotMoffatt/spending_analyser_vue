@@ -1,11 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
-    "\\src\\assets",
-    "\\src\\components",
-    "\\src\\TransactionFactories"
+    "\\public"
   ],
-  "SelectedNode": "\\public",
+  "SelectedNode": "\\package.json",
   "PreviewInSolutionExplorer": false
 }
