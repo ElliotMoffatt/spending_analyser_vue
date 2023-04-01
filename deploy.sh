@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+export NODE_OPTIONS=--openssl-legacy-provider
+
 # abort on errors
 #set -e
 

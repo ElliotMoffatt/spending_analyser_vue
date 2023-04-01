@@ -62,6 +62,9 @@
                 required: true
             }
         },
+        emits: [
+            "update:categories",
+            ],
         data() {
             return {
                 categories: this.categoriesProp,
@@ -92,8 +95,11 @@
             },
 
             addCategory() {
-                this.categories[document.getElementById("newCategory").value] = [];
-                this.selectedCategory = document.getElementById("newCategory").value;
+                const newCatName = document.getElementById("newCategory").value;
+                if (newCatName) {
+                    this.categories[document.getElementById("newCategory").value] = [];
+                    this.selectedCategory = document.getElementById("newCategory").value;
+                }
                 document.getElementById("newCategory").value = "";
             },
 
